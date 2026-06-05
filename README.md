@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Jainish Solanki
 
-## Getting Started
+Personal portfolio site. Built as a foundation to iterate on — the tech stack is locked, the content and visuals will keep evolving.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router, Turbopack) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** for styling
+- **React Three Fiber + drei + three** for the 3D scene
+- **framer-motion** for animations
+- **lucide-react** (pinned to `^0.577.0` — v1 dropped brand icons) for icons
+- **next-themes** for theming
+- Deployed on **Vercel**
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Edit content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All content (bio, experience, projects, skills, socials) lives in **`lib/data.ts`**. Edit that one file — every section reads from it.
 
-## Learn More
+```
+lib/data.ts            ← bio, projects, experience, skills, socials
+app/
+  layout.tsx           ← <head>, metadata
+  page.tsx             ← composes the sections
+  globals.css          ← tailwind + dark theme + scrollbars
+components/
+  navbar.tsx
+  hero.tsx             ← the headline + 3D background
+  about.tsx
+  experience.tsx
+  projects.tsx
+  contact.tsx
+  section.tsx          ← reusable section wrapper
+  three/
+    scene.tsx          ← R3F Canvas (dynamic-imported, client-only)
+    floating-shape.tsx ← the distorted icosahedron
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Edit the 3D scene
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The 3D background lives in `components/three/`. `scene.tsx` is the Canvas wrapper (lights, Float, Stars); `floating-shape.tsx` is the hero object. Swap geometries, materials, or whole scenes by editing those two files.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
+Push to `main` — Vercel auto-builds. No `vercel.json` needed; Next.js is detected automatically.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Build
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+```
