@@ -64,6 +64,33 @@ The `/contact` page has a real working form that emails me via [Resend](https://
 
 Without the key set, the form returns a friendly error and tells visitors to email directly. To use a custom `from:` domain (e.g. `hello@yourdomain.com`) instead of `onboarding@resend.dev`, verify the domain in Resend first.
 
+## SEO
+
+This site is pre-wired for search visibility on the name "Jainish Solanki" and ML-related queries.
+
+**Built in:**
+- Per-page `title`, `description`, `keywords`, canonical URLs (`app/*/page.tsx`)
+- Schema.org `Person` + `WebSite` JSON-LD on every page (root `layout.tsx`)
+- Schema.org `CreativeWork` JSON-LD on each project page (`/projects/[slug]`)
+- Auto-generated **sitemap** at `/sitemap.xml` (`app/sitemap.ts`)
+- Auto-generated **robots.txt** at `/robots.txt` (`app/robots.ts`)
+- Dynamic **Open Graph image** at `/opengraph-image` (1200×630, brand colors, name + role)
+- `metadataBase` driven by `NEXT_PUBLIC_SITE_URL` (set on Vercel)
+
+**Once deployed, do these steps to rank for "Jainish Solanki":**
+
+1. Set `NEXT_PUBLIC_SITE_URL` to your final URL (Vercel Project → Settings → Environment Variables).
+2. Submit to **Google Search Console** (<https://search.google.com/search-console>):
+   - Add property, verify domain.
+   - Submit `https://<your-url>/sitemap.xml`.
+   - Request indexing on the home page after first crawl.
+3. **Backlinks matter.** Add the portfolio link to:
+   - GitHub profile bio (`Sjainish04`)
+   - LinkedIn profile
+   - SCML 2024 / ICSML author bio if possible
+   - University-of-Toronto student profile if you have one
+4. Verify the JSON-LD with Google's **Rich Results Test**: <https://search.google.com/test/rich-results>.
+
 ## Deploy
 
 Push to `main` — Vercel auto-builds. No `vercel.json` needed; Next.js is detected automatically.
