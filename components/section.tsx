@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 type SectionProps = {
-  id: string;
+  id?: string;
   title?: string;
   eyebrow?: string;
   children: ReactNode;
@@ -16,14 +16,14 @@ export function Section({ id, title, eyebrow, children }: SectionProps) {
       {(eyebrow || title) && (
         <div className="mb-12">
           {eyebrow && (
-            <p className="mb-3 text-sm font-mono uppercase tracking-widest text-indigo-400">
+            <p className="mb-3 text-xs font-mono uppercase tracking-[0.3em] text-indigo-600 dark:text-indigo-400">
               {eyebrow}
             </p>
           )}
           {title && (
-            <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            <h1 className="text-4xl font-semibold tracking-tight text-zinc-900 md:text-5xl dark:text-zinc-50">
               {title}
-            </h2>
+            </h1>
           )}
         </div>
       )}

@@ -48,6 +48,22 @@ components/
 
 The 3D background lives in `components/three/`. `scene.tsx` is the Canvas wrapper (lights, Float, Stars); `floating-shape.tsx` is the hero object. Swap geometries, materials, or whole scenes by editing those two files.
 
+## Contact form
+
+The `/contact` page has a real working form that emails me via [Resend](https://resend.com).
+
+1. Sign up at <https://resend.com> (free — 3,000 emails/month).
+2. Create an API key.
+3. Add it to a `.env.local` file (see `.env.example`):
+   ```bash
+   RESEND_API_KEY=re_xxx
+   CONTACT_TO_EMAIL=jainish5658@gmail.com
+   CONTACT_FROM=Portfolio <onboarding@resend.dev>
+   ```
+4. On Vercel: add the same vars under Project → Settings → Environment Variables, then redeploy.
+
+Without the key set, the form returns a friendly error and tells visitors to email directly. To use a custom `from:` domain (e.g. `hello@yourdomain.com`) instead of `onboarding@resend.dev`, verify the domain in Resend first.
+
 ## Deploy
 
 Push to `main` — Vercel auto-builds. No `vercel.json` needed; Next.js is detected automatically.
